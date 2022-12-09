@@ -51,12 +51,17 @@ public class ItemRepositoryTest {
     @Test
     void updateItem(){
         //given
-//        Item itemA = new Item("itemA", 10000, 10);
-//        Item itemAId = itemRepository.findById(itemA.getId());
-//
-//        //when
-//        itemRepository.update(itemAId, );
+        Item itemA = new Item("itemA", 10000, 10);
+
+        Item savedItem = itemRepository.save(itemA);
+        Long itemId = savedItem.getId();
+
+        //when
+        Item updateParam = new Item("updateItem", 15000, 5);
+        itemRepository.update(itemId, updateParam);
 
         //then
+        Item findId = itemRepository.findById(itemId);
+        assertThat(findId.getItemName()).isEqualTo("updateItem");
     }
 }
