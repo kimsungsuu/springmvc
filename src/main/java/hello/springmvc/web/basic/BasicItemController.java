@@ -80,7 +80,7 @@ public class BasicItemController {
     public String saveV5(Item item) {
         itemRepository.save(item);
 
-        return "basic/item";
+        return "redirect:/basic/items";
     }
     /**
      * 테스트용 데이터 추가
@@ -98,10 +98,14 @@ public class BasicItemController {
 
         itemRepository.update(itemId, updateItem);
 
-
-
         return "redirect:/basic/items/{itemId}"; // http://localhost:8080/basic/items/1
 //        return "basic/item"; // http://localhost:8080/basic/items/1/edit
+    }
+
+    @GetMapping("/{itemId}/delete")
+    public String delete(@PathVariable Long itemId){
+        itemRepository.delete(itemId);
+        return "redirect:/basic/items";
     }
 
 
